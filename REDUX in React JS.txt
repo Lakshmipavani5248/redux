@@ -1,0 +1,51 @@
+REDUX in React JS:-
+
+
+Introduction
+
+Redux is a state management library used in React applications.
+It helps manage global application state in a predictable way, especially when data needs to be shared between multiple components.
+
+Why Redux?
+
+In large React applications:
+
+Passing data via props becomes complex (prop drilling)
+
+Managing shared state is difficult
+
+Redux solves this by providing:
+
+A central store
+
+A single source of truth
+
+Easy debugging and predictable state updates.
+
+
+
+Redux Example:-
+
+
+
+import { createStore } from "redux";
+
+const initialState = {
+  count: 0
+};
+
+function counterReducer(state = initialState, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return { count: state.count + 1 };
+
+    case "DECREMENT":
+      return { count: state.count - 1 };
+
+    default:
+      return state;
+  }
+}
+
+const store = createStore(counterReducer);
+export default store;
