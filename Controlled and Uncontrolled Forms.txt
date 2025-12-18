@@ -1,0 +1,125 @@
+Controlled and Uncontrolled Forms in React
+
+
+Introduction
+
+Forms are an important part of React applications used to collect user input.
+React supports two ways to handle form data:
+
+Controlled Components
+
+Uncontrolled Components
+
+
+
+1. Controlled Components:-
+
+
+Definition
+
+In controlled components, form data is controlled by React state.
+Every input value is stored in state and updated using event handlers.
+
+Characteristics:-
+
+Uses useState
+
+React controls input values
+
+Easy validation and debugging
+
+Recommended approach in React
+
+
+
+Example: Controlled Form
+
+
+
+import React, { useState } from "react";
+
+function ControlledForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Name: ${name}, Email: ${email}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h3>Controlled Form</h3>
+
+      <input
+        type="text"
+        placeholder="Enter Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      /><br /><br />
+
+      <input
+        type="email"
+        placeholder="Enter Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      /><br /><br />
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default ControlledForm;
+
+
+
+
+2.  Uncontrolled Components:-
+
+
+Definition
+
+In uncontrolled components, form data is handled by the DOM itself.
+React accesses the value using refs.
+
+Characteristics:-
+
+Uses useRef
+
+Less code
+
+Not fully controlled by React
+
+Suitable for simple forms
+
+
+
+Example: Uncontrolled Form
+
+import React, { useRef } from "react";
+
+function UncontrolledForm() {
+  const nameRef = useRef();
+  const emailRef = useRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(
+      `Name: ${nameRef.current.value}, Email: ${emailRef.current.value}`
+    );
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h3>Uncontrolled Form</h3>
+
+      <input type="text" placeholder="Enter Name" ref={nameRef} /><br /><br />
+      <input type="email" placeholder="Enter Email" ref={emailRef} /><br /><br />
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default UncontrolledForm;
